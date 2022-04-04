@@ -12,7 +12,7 @@ export default function App() {
     <SiteWrapper>
       <Navigation />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage onCreateUser={createUser} />} />
         <Route path="/about" element={<AboutPage user={user} />} />
       </Routes>
     </SiteWrapper>
