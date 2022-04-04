@@ -11,8 +11,8 @@ export default function App() {
   return (
     <SiteWrapper>
       <Navigation onNavigate={navigate} />
-      {currentPage === "home" && <HomePage onCreateUser={createUser} />}
-      {currentPage === "about" && <AboutPage user={user} />}
+      {currentPage === "home" ? <HomePage onCreateUser={createUser} /> : ""}
+      {currentPage === "about" ? <AboutPage user={user} /> : ""}
     </SiteWrapper>
   );
 

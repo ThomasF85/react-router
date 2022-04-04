@@ -4,6 +4,7 @@ export default function AboutPage({ user }) {
     <>
       <h1>About page</h1>
       <p>All about {userName}!</p>
+      <p>Lorem...</p>
     </>
   );
 }
