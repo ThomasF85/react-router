@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import styled from "styled-components";
+import Navigation from "./components/Navigation";
+import AboutPage from "./pages/AboutPage";
+import HomePage from "./pages/HomePage";
 
-function App() {
+export default function App() {
+  const [currentPage, setCurrentPage] = useState("home");
+  const [user, setUser] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <SiteWrapper>
+      <Navigation onNavigate={navigate} />
+      {currentPage === "home" && <HomePage onCreateUser={createUser} />}
+      {currentPage === "about" && <AboutPage user={user} />}
+    </SiteWrapper>
   );
+
+  function navigate(page) {
+    setCurrentPage(page);
+  }
+
+  function createUser(name) {
+    setUser(name);
+    setCurrentPage("about");
+  }
 }
 
-export default App;
+const SiteWrapper = styled.div`
+  max-width: 50em;
+  margin: 0 auto;
+`;
