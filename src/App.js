@@ -3,26 +3,24 @@ import styled from "styled-components";
 import Navigation from "./components/Navigation";
 import AboutPage from "./pages/AboutPage";
 import HomePage from "./pages/HomePage";
+import { Routes, Route } from "react-router-dom";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState("home");
   const [user, setUser] = useState("");
 
   return (
     <SiteWrapper>
-      <Navigation onNavigate={navigate} />
-      {currentPage === "home" ? <HomePage onCreateUser={createUser} /> : ""}
-      {currentPage === "about" ? <AboutPage user={user} /> : ""}
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage user={user} />} />
+      </Routes>
     </SiteWrapper>
   );
 
-  function navigate(page) {
-    setCurrentPage(page);
-  }
-
   function createUser(name) {
     setUser(name);
-    setCurrentPage("about");
+    //setCurrentPage("about");
   }
 }
 
